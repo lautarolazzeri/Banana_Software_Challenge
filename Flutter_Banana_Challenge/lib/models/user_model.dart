@@ -4,11 +4,11 @@
 
 import 'dart:convert';
 
-ProductModel productModelFromMap(String str) => ProductModel.fromMap(json.decode(str));
+UserModel productModelFromMap(String str) => UserModel.fromMap(json.decode(str));
 
-String productModelToMap(ProductModel data) => json.encode(data.toMap());
+String productModelToMap(UserModel data) => json.encode(data.toMap());
 
-class ProductModel {
+class UserModel {
   final int id;
   final String username;
   final String email;
@@ -18,7 +18,7 @@ class ProductModel {
   final String image;
   final String token;
 
-  ProductModel({
+  UserModel({
     required this.id,
     required this.username,
     required this.email,
@@ -29,7 +29,29 @@ class ProductModel {
     required this.token,
   });
 
-  factory ProductModel.fromMap(Map<String, dynamic> json) => ProductModel(
+static final cleanUser = UserModel(
+      id: 0,
+      username: '',
+      email: '',
+      firstName: '',
+      lastName: '',
+      gender: '',
+      image: '',
+      token: '');
+
+
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        id: json["id"],
+        username: json["username"],
+        email: json["email"],
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        gender: json["gender"],
+        image: json["image"],
+        token: json["token"],
+      );
+
+  factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
         id: json["id"],
         username: json["username"],
         email: json["email"],
