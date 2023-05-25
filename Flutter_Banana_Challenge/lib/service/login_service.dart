@@ -34,4 +34,13 @@ class LoginService {
   Future<String> isAuthenticated() async {
     return await securestorage.read(key: 'auth_token') ?? '';
   }
+
+
+  //logout
+  Future<void> logout() async {
+    await securestorage.delete(key: 'auth_token');
+  }
+
+
+
 }
