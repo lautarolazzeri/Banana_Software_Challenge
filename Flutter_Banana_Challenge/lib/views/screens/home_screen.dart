@@ -1,4 +1,5 @@
 import 'package:app/constants/constants.dart';
+import 'package:app/service/login_service.dart';
 import 'package:app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -95,6 +96,16 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                LoginService().logout();
+              },
+              icon: const Icon(
+                Icons.logout_outlined,
+                color: white,
+              ))
+        ],
         title: const Text(
           'Flutter Challenge 2023',
           style: TextStyle(color: white),
