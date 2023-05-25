@@ -1,4 +1,4 @@
-import 'package:app/views/screens/login_screen.dart';
+import 'package:app/views/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:app/constants/constants.dart';
 import 'package:app/views/routes/routes.dart';
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      home: HomeScreen(),
       routes: routes,
     );
   }
