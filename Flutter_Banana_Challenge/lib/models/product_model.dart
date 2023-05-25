@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final productModel = productModelFromMap(jsonString);
+
 import 'dart:convert';
 
 ProductModel productModelFromMap(String str) => ProductModel.fromMap(json.decode(str));
@@ -7,39 +11,55 @@ String productModelToMap(ProductModel data) => json.encode(data.toMap());
 class ProductModel {
   final int id;
   final String title;
-  final String brand;
   final String description;
   final int price;
+  final double discountPercentage;
+  final double rating;
   final int stock;
+  final String brand;
+  final String category;
+  final String thumbnail;
   final List<String> images;
 
   ProductModel({
     required this.id,
     required this.title,
-    required this.brand,
     required this.description,
     required this.price,
+    required this.discountPercentage,
+    required this.rating,
     required this.stock,
+    required this.brand,
+    required this.category,
+    required this.thumbnail,
     required this.images,
   });
 
   factory ProductModel.fromMap(Map<String, dynamic> json) => ProductModel(
         id: json["id"],
         title: json["title"],
-        brand: json["brand"],
         description: json["description"],
         price: json["price"],
+        discountPercentage: json["discountPercentage"]?.toDouble(),
+        rating: json["rating"]?.toDouble(),
         stock: json["stock"],
+        brand: json["brand"],
+        category: json["category"],
+        thumbnail: json["thumbnail"],
         images: List<String>.from(json["images"].map((x) => x)),
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
         "title": title,
-        "brand": brand,
         "description": description,
         "price": price,
+        "discountPercentage": discountPercentage,
+        "rating": rating,
         "stock": stock,
+        "brand": brand,
+        "category": category,
+        "thumbnail": thumbnail,
         "images": List<dynamic>.from(images.map((x) => x)),
       };
 }
