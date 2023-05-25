@@ -25,21 +25,32 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 48.0),
+                const SizedBox(height: 48),
                 Image.asset(
                   'assets/banana-logo.png',
-                  height: 100.0,
+                  height: 100,
                 ),
-                const SizedBox(height: 48.0),
-                const Text('Bienvenido!',
-                    style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold, color: appColor)),
-                const SizedBox(height: 24.0),
+                const SizedBox(height: 48),
+                Text('Bienvenido'.toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 32.0,
+                      fontWeight: FontWeight.bold,
+                      color: appColor,
+                    )),
+                const SizedBox(height: 24),
+                const Text(
+                  'Inicia sesión para continuar',
+                  style: TextStyle(fontSize: 16.0, color: Colors.grey),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 8),
                 LoginInput(
                   textEditingController: userController,
                   hintText: 'Usuario',
                   prefixIcon: const Icon(Icons.person),
                 ),
-                const SizedBox(height: 16.0),
+                const SizedBox(height: 16),
                 LoginInput(
                   textEditingController: passwordController,
                   hintText: 'Contraseña',
@@ -48,7 +59,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 24.0),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    //todo implement login
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: appColor,
                     shape: RoundedRectangleBorder(
