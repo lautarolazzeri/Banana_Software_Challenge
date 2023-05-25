@@ -22,7 +22,7 @@ class SingleProduct extends StatelessWidget {
               offset: Offset(0, 2),
             ),
           ],
-          color: Colors.white,
+          color: white,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(

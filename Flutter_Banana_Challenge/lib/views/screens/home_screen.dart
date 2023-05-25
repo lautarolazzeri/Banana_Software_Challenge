@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         title: const Text(
           'Flutter Challenge 2023',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: white),
         ),
         backgroundColor: appColor,
       ),

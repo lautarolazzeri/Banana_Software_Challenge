@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                  child: const Text('Ingresar', style: TextStyle(color: Colors.white)),
+                  child: const Text('Ingresar', style: TextStyle(color: white)),
                 ),
                 const SizedBox(height: 16.0),
               ],

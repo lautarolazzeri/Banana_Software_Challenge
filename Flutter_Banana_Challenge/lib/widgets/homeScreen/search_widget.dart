@@ -16,7 +16,7 @@ class SearchInput extends StatelessWidget {
             offset: Offset(0, 2),
           ),
         ],
-        color: Colors.white,
+        color: white,
         borderRadius: BorderRadius.circular(8),
       ),
       child: TextField(
@@ -35,11 +35,11 @@ class SearchInput extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white, width: 1.0),
+            borderSide: BorderSide(color: white, width: 1.0),
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white, width: 2.0),
+            borderSide: BorderSide(color: white, width: 2.0),
             borderRadius: BorderRadius.all(Radius.circular(15.0)),
           ),
         ),
