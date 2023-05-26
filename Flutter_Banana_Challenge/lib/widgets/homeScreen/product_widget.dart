@@ -3,6 +3,9 @@ import 'package:app/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+//this widget is used in home screen to display a single product
+//this widget is also used in search delegate to display a single product
+
 class SingleProduct extends StatelessWidget {
   final ProductModel product;
 const SingleProduct({super.key, required this.product});

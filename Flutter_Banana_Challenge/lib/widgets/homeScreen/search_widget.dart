@@ -8,6 +8,7 @@ class SearchInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      //open search delegate
       onTap: () => showSearch(
         context: context,
         delegate: SearchDelegateProducts(),

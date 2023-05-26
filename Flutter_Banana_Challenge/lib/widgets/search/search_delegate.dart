@@ -6,9 +6,12 @@ import 'package:provider/provider.dart';
 
 //search delegate
 class SearchDelegateProducts extends SearchDelegate {
+
+  //change the text of the search field
   @override
   String get searchFieldLabel => 'Buscar Productos';
 
+  //X button to clear the search field
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -19,6 +22,7 @@ class SearchDelegateProducts extends SearchDelegate {
     ];
   }
 
+  //back button
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
@@ -27,25 +31,7 @@ class SearchDelegateProducts extends SearchDelegate {
     );
   }
 
-  @override
-  Widget buildResults(BuildContext context) {
-    return Consumer<ProductViewModel>(builder: (context, state, child) {
-      if (state.searchResult.isEmpty) {
-        return const Center(
-          child: Text('No se encontraron resultados'),
-        );
-      }
-      return ListView.builder(
-        itemCount: state.searchResult.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          final product = state.searchResult[index];
-          return SingleProduct(product: product);
-        },
-      );
-    });
-  }
-
+  //suggestions that appear when the user writes
   @override
   Widget buildSuggestions(BuildContext context) {
     if (query.isEmpty) {
@@ -60,8 +46,8 @@ class SearchDelegateProducts extends SearchDelegate {
       builder: (context, state, child) {
         productsProvider.searchByProduct(query);
         if (state.searchResult.isEmpty) {
-          return const Center(
-            child: Text('No se encontraron resultados'),
+          return Center(
+            child: Text('No se encontraron resultados para "$query"'),
           );
         }
         return ListView.builder(
@@ -75,4 +61,28 @@ class SearchDelegateProducts extends SearchDelegate {
       },
     );
   }
+
+
+  //results of the search
+  @override
+  Widget buildResults(BuildContext context) {
+    return Consumer<ProductViewModel>(builder: (context, state, child) {
+      if (state.searchResult.isEmpty) {
+        return Center(
+          child: Text('No se encontraron resultados para "$query"'),
+        );
+      }
+      return ListView.builder(
+        itemCount: state.searchResult.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          final product = state.searchResult[index];
+          return SingleProduct(product: product);
+        },
+      );
+    });
+  }
+
+
+
 }

@@ -19,6 +19,7 @@ class LoginInput extends StatefulWidget {
   State<LoginInput> createState() => _LoginInputState();
 }
 
+//este widget es stateful porque el view del password tiene un icono que cambia
 class _LoginInputState extends State<LoginInput> {
   bool pwdVisibility = true;
   @override
