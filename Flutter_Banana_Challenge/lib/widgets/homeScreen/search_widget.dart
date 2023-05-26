@@ -1,4 +1,5 @@
 import 'package:app/constants/constants.dart';
+import 'package:app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class SearchInput extends StatelessWidget {
@@ -6,42 +7,39 @@ class SearchInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      decoration: BoxDecoration(
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.grey,
-            blurRadius: 2,
-            offset: Offset(0, 2),
-          ),
-        ],
-        color: white,
-        borderRadius: BorderRadius.circular(8),
+    return GestureDetector(
+      onTap: () => showSearch(
+        context: context,
+        delegate: SearchDelegateProducts(),
       ),
-      child: TextField(
-        onTap: () {
-          //open search delegate
-        },
-        decoration: const InputDecoration(
-          prefixIcon: Icon(
-            Icons.search,
-            color: appColor,
-          ),
-          hintText: 'Buscar producto',
-          hintStyle: TextStyle(color: Colors.grey),
-          contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(15.0)),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: white, width: 1.0),
-            borderRadius: BorderRadius.all(Radius.circular(15.0)),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: white, width: 2.0),
-            borderRadius: BorderRadius.all(Radius.circular(15.0)),
-          ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0xAC9E9E9E),
+              blurRadius: 3,
+              offset: Offset(0, 2),
+            ),
+          ],
+          color: white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: const Row(
+          children: [
+            Icon(
+              Icons.search,
+              color: appColor,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              'Buscar producto',
+              style: TextStyle(color: Color(0xFF7E7D7D)),
+            ),
+          ],
         ),
       ),
     );
