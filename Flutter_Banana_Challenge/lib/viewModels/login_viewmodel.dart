@@ -12,24 +12,35 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   String appToken = '';
-
   UserModel _user = UserModel.cleanUser;
   UserModel get user => _user;
   bool get isUserLogged => appToken != '';
 
   Future<bool> login(String email, String password) async {
-    //call the service to login
+    //obtenemos el usuario mediante el email y password
     final user = await loginService.userLogin(email, password);
-    //si el usuario es igual al usuario vacio, entonces no se logueo
+    //si el usuario es igual al usuario vacio, devolvemos false
     if (user == UserModel.cleanUser) return false;
     _user = user;
     notifyListeners();
     return true;
   }
 
+  //verificar si el usuario ya esta autenticado mediante el token
   Future<void> checkAuthStatus() async {
     final tokenResponse = await loginService.isAuthenticated();
     appToken = tokenResponse;
     notifyListeners();
   }
+
+
+  //logout
+  Future<void> logout() async {
+    await loginService.logout();
+    _user = UserModel.cleanUser;
+    appToken = '';
+    notifyListeners();
+  }
+
+
 }

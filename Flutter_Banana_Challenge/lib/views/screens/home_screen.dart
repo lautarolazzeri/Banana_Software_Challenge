@@ -1,5 +1,5 @@
 import 'package:app/constants/constants.dart';
-import 'package:app/service/login_service.dart';
+import 'package:app/viewModels/login_viewmodel.dart';
 import 'package:app/viewModels/products_viewmodel.dart';
 import 'package:app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +7,10 @@ import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    //obtenemos el loginViewModel
+    final LoginViewModel loginViewModel = context.read<LoginViewModel>();
 
     return Scaffold(
       appBar: AppBar(
@@ -17,7 +18,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                LoginService().logout();
+                loginViewModel.logout();
               },
               icon: const Icon(
                 Icons.logout_outlined,
