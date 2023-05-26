@@ -73,7 +73,7 @@ class _LoginInputState extends State<LoginInput> {
       ),
       validator: (val) {
         if (val!.isEmpty) {
-          return 'Required';
+          return 'Por favor completa este campo';
         }
         return null;
       },

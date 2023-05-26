@@ -34,16 +34,12 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             const SearchInput(),
-            const SizedBox(height: 16),
             FutureBuilder(
-              future: ProductViewModel().getAllProducts(),
+              future: context.read<ProductViewModel>().getAllProducts(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   return Consumer<ProductViewModel>(
                     builder: (context, state, child) {
-                      if (state.loading) {
-                        return const Center(child: CircularProgressIndicator());
-                      }
                       return ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -57,7 +53,12 @@ class HomeScreen extends StatelessWidget {
                     },
                   );
                 } else {
-                  return const Text('asdasd');
+                  return Center(
+                    child: Image.asset(
+                      'assets/loading.gif',
+                      height: 100,
+                    ),
+                  );
                 }
               },
             )
