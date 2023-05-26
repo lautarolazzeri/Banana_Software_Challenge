@@ -21,6 +21,7 @@ class _ProductInfoState extends State<ProductInfo> {
   void initState() {
     super.initState();
     _pageController.addListener(() {
+      //change the indicator when the page change
       setState(() {
         _currentPage = _pageController.page!.round();
       });
@@ -121,6 +122,8 @@ class _ProductInfoState extends State<ProductInfo> {
                 ],
               ),
             ),
+
+            //botón agregar al carrito
             Container(
               width: double.infinity,
               height: 50.0,

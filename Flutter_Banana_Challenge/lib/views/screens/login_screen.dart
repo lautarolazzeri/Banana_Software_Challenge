@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
       if (!login && mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Usuario o contraseña incorrectos'),
+            content: Text('El Usuario o la contraseña son incorrectos'),
             backgroundColor: colorError,
           ),
         );
@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 48),
                   Image.asset(
                     'assets/banana-logo.png',
-                    height: 100,
+                    height: 100
                   ),
                   const SizedBox(height: 48),
                   Text('Bienvenido'.toUpperCase(),
