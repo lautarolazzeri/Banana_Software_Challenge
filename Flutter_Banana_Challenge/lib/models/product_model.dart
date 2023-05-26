@@ -1,3 +1,8 @@
+// Purpose: Model for the product data
+// The model was generated using https://app.quicktype.io/
+// The model was generated using the response from the api
+// using POSTMAN
+
 
 import 'dart:convert';
 

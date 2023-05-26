@@ -1,6 +1,7 @@
-// To parse this JSON data, do
-//
-//     final productModel = productModelFromMap(jsonString);
+// Purpose: Model for the user data
+// The model was generated using https://app.quicktype.io/
+// The model was generated using the response from the api
+// using POSTMAN
 
 import 'dart:convert';
 
@@ -29,18 +30,20 @@ class UserModel {
     required this.token,
   });
 
+//create a static user to be used when the user logs out and checks
 static final cleanUser = UserModel(
-      id: 0,
-      username: '',
-      email: '',
-      firstName: '',
-      lastName: '',
-      gender: '',
-      image: '',
-      token: '');
+    id: 0,
+    username: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    gender: '',
+    image: '',
+    token: '',
+  );
 
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         id: json["id"],
         username: json["username"],
         email: json["email"],
