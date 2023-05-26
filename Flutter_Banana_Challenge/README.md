@@ -14,7 +14,7 @@ Esta es una prueba técnica para Banana Software.
 #### Basic
 
 ```http
-  POST https://dummyjson.com
+  https://dummyjson.com
 ```
 
 #### Get all products
@@ -40,7 +40,7 @@ Esta es una prueba técnica para Banana Software.
 ```http
   GET https://dummyjson.com/auth/login
 ```
-  Usuario: kminchelle --- 
+  Usuario: kminchelle ---
   Contraseña: 0lelplR
 # Colors
 | Color             | Hex                                                                |
