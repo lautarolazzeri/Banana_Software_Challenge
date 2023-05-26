@@ -14,7 +14,7 @@ Esta es una prueba técnica para Banana Software.
 #### Basic
 
 ```http
-  https://dummyjson.com
+  POST https://dummyjson.com
 ```
 
 #### Get all products
@@ -71,3 +71,19 @@ flutter pub get && flutter run
 ## Support
 
 For support, email lautyylazzerii@gmail.com
+## UI de la App
+
+![Login](https://raw.githubusercontent.com/lautarolazzeri/Banana_Software_Challenge/main/Flutter_Banana_Challenge/assets/ui/login.jpg)
+
+![Homescreen](https://raw.githubusercontent.com/lautarolazzeri/Banana_Software_Challenge/main/Flutter_Banana_Challenge/assets/ui/homescreen.jpg)
+
+![InfoScreen](https://raw.githubusercontent.com/lautarolazzeri/Banana_Software_Challenge/main/Flutter_Banana_Challenge/assets/ui/infoScreen.jpg)
+
+
+
+![Search](https://raw.githubusercontent.com/lautarolazzeri/Banana_Software_Challenge/main/Flutter_Banana_Challenge/assets/ui/search.jpg)
+
+![SearchResults](https://raw.githubusercontent.com/lautarolazzeri/Banana_Software_Challenge/main/Flutter_Banana_Challenge/assets/ui/searchResults.jpg)
+
+
+
