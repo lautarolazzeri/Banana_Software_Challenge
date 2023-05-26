@@ -1,10 +1,10 @@
 import 'package:app/constants/constants.dart';
-import 'package:app/views/screens/screens.dart';
+import 'package:app/models/product_model.dart';
 import 'package:flutter/material.dart';
 
 class SingleProduct extends StatelessWidget {
-  final Product product;
-  const SingleProduct({super.key, required this.product});
+  final ProductModel product;
+const SingleProduct({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,7 @@ class SingleProduct extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: Image(
-                //todo change asset to network image
-                image: AssetImage(product.image),
+                image: NetworkImage(product.images[0]),
                 width: 130,
                 height: 130,
                 fit: BoxFit.cover,
@@ -44,7 +43,7 @@ class SingleProduct extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(product.name,
+                    Text(product.title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(

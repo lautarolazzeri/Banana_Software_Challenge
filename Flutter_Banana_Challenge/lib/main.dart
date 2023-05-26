@@ -1,5 +1,6 @@
 import 'package:app/service/login_service.dart';
 import 'package:app/viewModels/login_viewmodel.dart';
+import 'package:app/viewModels/products_viewmodel.dart';
 import 'package:app/views/routes/routes.dart';
 import 'package:app/views/screens/screens.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
     final loginService = LoginService();
     return MultiProvider(
         providers: [
+          ChangeNotifierProvider<ProductViewModel>(create: (context) => ProductViewModel()),
           ChangeNotifierProvider<LoginViewModel>(
             create: (context) => LoginViewModel(loginService: loginService),
           )
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
                 return const LoginPage();
               }
               //If user is logged in, return HomeScreen
-              return HomeScreen();
+              return const HomeScreen();
             },
           ),
       routes: routes,
