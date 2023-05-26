@@ -5,6 +5,6 @@ import 'package:flutter/material.dart';
 
 Map<String, Widget Function(BuildContext)> routes = {
   'login': (BuildContext context) => const LoginPage(),
-  'product-info': (BuildContext context) => ProductInfo(),
+  'product-info': (BuildContext context) => const ProductInfo(), //used
   'home': (BuildContext context) => const HomeScreen(),
 };
