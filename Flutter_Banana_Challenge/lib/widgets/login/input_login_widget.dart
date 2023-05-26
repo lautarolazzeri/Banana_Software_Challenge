@@ -1,3 +1,4 @@
+import 'package:app/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class LoginInput extends StatefulWidget {
@@ -29,28 +30,28 @@ class _LoginInputState extends State<LoginInput> {
         hintText: widget.hintText,
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-            color: Colors.grey,
+            color: grey,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(8),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-            color: Colors.red,
+            color: colorError,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(8),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-            color: Colors.red,
+            color: colorError,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(8),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-            color: Colors.grey,
+            color: grey,
             width: 1,
           ),
           borderRadius: BorderRadius.circular(8),
@@ -65,7 +66,7 @@ class _LoginInputState extends State<LoginInput> {
                 },
                 icon: Icon(
                   pwdVisibility ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                  color: Colors.grey.shade400,
+                  color: grey.shade400,
                   size: 18,
                 ),
               )

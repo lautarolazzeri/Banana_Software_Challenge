@@ -25,7 +25,7 @@ const SingleProduct({super.key, required this.product});
           decoration: BoxDecoration(
             boxShadow: const [
               BoxShadow(
-                color: Colors.grey,
+                color: grey,
                 blurRadius: 2,
                 offset: Offset(0, 2),
               ),
@@ -63,7 +63,7 @@ const SingleProduct({super.key, required this.product});
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             fontSize: 14,
-                            color: Colors.grey,
+                            color: grey,
                           )),
                       const SizedBox(height: 2),
                       Text(

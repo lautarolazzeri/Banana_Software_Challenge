@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Usuario o contraseña incorrectos'),
-            backgroundColor: Colors.red,
+            backgroundColor: colorError,
           ),
         );
       }
@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 24),
                   const Text(
                     'Inicia sesión para continuar',
-                    style: TextStyle(fontSize: 16.0, color: Colors.grey),
+                    style: TextStyle(fontSize: 16.0, color: grey),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),

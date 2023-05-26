@@ -1,3 +1,4 @@
+import 'package:app/constants/constants.dart';
 import 'package:app/viewModels/products_viewmodel.dart';
 import 'package:app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class SearchDelegateProducts extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     if (query.isEmpty) {
       return const Center(
-        child: Icon(Icons.search, size: 100, color: Colors.grey),
+        child: Icon(Icons.search, size: 100, color: grey),
       );
     }
 

@@ -94,7 +94,7 @@ class _ProductInfoState extends State<ProductInfo> {
                   ),
                   Text(
                     product.brand,
-                    style: const TextStyle(fontSize: 18, color: Colors.grey),
+                    style: const TextStyle(fontSize: 18, color: grey),
                   ),
                   const SizedBox(height: 8),
                   Text(
@@ -161,7 +161,7 @@ class _ProductInfoState extends State<ProductInfo> {
           height: 8.0,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: _currentPage == i ? appColor : Colors.grey,
+            color: _currentPage == i ? appColor : grey,
           ),
         ),
       );
