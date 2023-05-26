@@ -3,18 +3,37 @@ import 'package:app/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class ProductInfo extends StatelessWidget {
-  ProductInfo({super.key});
+class ProductInfo extends StatefulWidget {
+  const ProductInfo({super.key});
 
+  @override
+  State<ProductInfo> createState() => _ProductInfoState();
+}
+
+class _ProductInfoState extends State<ProductInfo> {
   //page controller
   final PageController _pageController = PageController(initialPage: 0);
 
   //indicator
-  final int _currentPage = 0;
+  int _currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      setState(() {
+        _currentPage = _pageController.page!.round();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+
+    //get product
     final ProductModel product = ModalRoute.of(context)!.settings.arguments as ProductModel;
+
+    //formatear el precio para que salga con .00
     final priceWithFormat = NumberFormat.currency(
       decimalDigits: 2,
       symbol: '\$',
@@ -32,124 +51,121 @@ class ProductInfo extends StatelessWidget {
             icon: const Icon(Icons.arrow_back),
           )),
       body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              //slider product images
-              SizedBox(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height * 0.3,
-                child: PageView.builder(
-                  controller: _pageController,
-                  itemCount: product.images.length,
-                  itemBuilder: (context, index) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.network(
-                        product.images[index],
-                        fit: BoxFit.cover,
-                      ),
-                    );
-                  },
-                ),
+        child: Column(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              height: MediaQuery.of(context).size.height * 0.3,
+              child: PageView.builder(
+                controller: _pageController,
+                itemCount: product.images.length,
+                itemBuilder: (context, index) {
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: FadeInImage(
+                      placeholder: const AssetImage('assets/loading.gif'),
+                      image: NetworkImage(product.images[index]),
+                    ),
+                  );
+                },
               ),
-              const SizedBox(height: 24),
+            ),
+            const SizedBox(height: 8.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _buildIndicator(product),
+            ),
+            const SizedBox(height: 24),
 
-              //product info
-              ProductDescription(product: product, priceWithFormat: priceWithFormat),
-
-              //add to cart button
-              Container(
-                width: double.infinity,
-                height: 50.0,
-                margin: const EdgeInsets.symmetric(vertical: 24),
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Acción al presionar el botón "Agregar al carrito"
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: appColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+            //product info
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16.0),
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    product.title,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.shopping_cart, color: white),
-                      SizedBox(width: 8.0),
-                      Text('Agregar al carrito', style: TextStyle(fontSize: 18.0, color: white)),
-                    ],
+                  Text(
+                    product.brand,
+                    style: const TextStyle(fontSize: 18, color: Colors.grey),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    product.description,
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'USD$priceWithFormat',
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Stock: ${product.stock}',
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              height: 50.0,
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              child: ElevatedButton(
+                onPressed: () {
+                  // Acción al presionar el botón "Agregar al carrito"
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: appColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
-              )
-            ],
-          ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.shopping_cart, color: white),
+                    SizedBox(width: 8.0),
+                    Text('Agregar al carrito', style: TextStyle(fontSize: 18.0, color: white)),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
   }
-}
 
-class ProductDescription extends StatelessWidget {
-  const ProductDescription({
-    super.key,
-    required this.product,
-    required this.priceWithFormat,
-  });
-
-  final ProductModel product;
-  final String priceWithFormat;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Text(
-          product.title,
-          style: const TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+  List<Widget> _buildIndicator(ProductModel product) {
+    List<Widget> indicators = [];
+    for (int i = 0; i < product.images.length; i++) {
+      indicators.add(
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 4.0),
+          width: 8.0,
+          height: 8.0,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _currentPage == i ? appColor : Colors.grey,
           ),
         ),
-        Text(
-          product.brand,
-          style: const TextStyle(
-            fontSize: 18,
-          ),
-        ),
-        const SizedBox(height: 8),
-        const Text('Descripción',
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.grey,
-            )),
-        const SizedBox(height: 8),
-        Text(
-          product.description,
-          style: const TextStyle(
-            fontSize: 16,
-          ),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          'USD$priceWithFormat',
-          style: const TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 16),
-        Text(
-          'Stock: ${product.stock}',
-          style: const TextStyle(
-            fontSize: 16,
-          ),
-        ),
-      ],
-    );
+      );
+    }
+    return indicators;
   }
 }
