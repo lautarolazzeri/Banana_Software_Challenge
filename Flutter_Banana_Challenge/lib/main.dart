@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final loginService = LoginService();
     return MultiProvider(
+        //set all the providers
         providers: [
           ChangeNotifierProvider<ProductViewModel>(create: (context) => ProductViewModel()),
           ChangeNotifierProvider<LoginViewModel>(
@@ -34,12 +35,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
           home: Consumer<LoginViewModel>(
-            builder: (context, authViewModel, child) {
-              authViewModel.checkAuthStatus();
-              if (authViewModel.appToken == '') {
+            builder: (context, loginViewModel, child) {
+              loginViewModel.checkAuthStatus();
+
+              if (loginViewModel.appToken == '') {
                 return const LoginPage();
               }
-              //If user is logged in, return HomeScreen
               return const HomeScreen();
             },
           ),

@@ -55,17 +55,24 @@ class _ProductInfoState extends State<ProductInfo> {
         child: Column(
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.9,
+              width: MediaQuery.of(context).size.width * 0.92,
               height: MediaQuery.of(context).size.height * 0.3,
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: product.images.length,
                 itemBuilder: (context, index) {
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: FadeInImage(
-                      placeholder: const AssetImage('assets/loading.gif'),
-                      image: NetworkImage(product.images[index]),
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 4),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: FadeInImage(
+                        placeholder: const AssetImage('assets/loading.gif'),
+                        placeholderFit: BoxFit.none,
+                        image: NetworkImage(
+                          product.images[index],
+                        ),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   );
                 },
